@@ -1,0 +1,14 @@
+{% liquid
+  if payload.title == null or payload.title == empty
+    assign errors = errors | add_hash_key: 'title', 'must be not empty'
+  endif
+
+  if payload.price == null or payload.price == empty
+    assign errors = errors | add_hash_key: 'price', 'must be not empty'
+  endif
+
+  assign price = 0 | plus: payload.price
+  if price <= 0
+    assign errors = errors | add_hash_key: 'price', 'must be higher than 0'
+  endif
+%}

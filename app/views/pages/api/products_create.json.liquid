@@ -1,0 +1,15 @@
+---
+slug: api/products
+method: post
+---
+{% liquid
+  assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
+  include 'products/create', changeset: changeset
+  if changeset.errors.size == 0
+    echo changeset.model
+  else
+    echo '{ "errors": '
+    echo changeset.errors
+    echo '}'
+  endif
+%}

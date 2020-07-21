@@ -1,0 +1,14 @@
+# -*- restclient -*-
+#
+
+:endpoint = https://piotrze-test.staging.oregon.platform-os.com/api/products
+
+# create product
+POST :endpoint/api/products.json
+Content-Type: application/json
+{
+  "product": {
+    "title":"mazda",
+    "price": 0
+  }
+}

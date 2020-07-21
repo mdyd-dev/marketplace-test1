@@ -1,0 +1,14 @@
+---
+slug: products
+method: post
+---
+{% liquid
+  assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
+  include 'products/create', changeset: changeset
+
+  if changeset.errors.size == 0
+    echo 'TODO: redirect_to /products/' | append: changeset.model.id
+  else
+    include 'products/views/form', errors: changeset.errors
+  endif
+%}

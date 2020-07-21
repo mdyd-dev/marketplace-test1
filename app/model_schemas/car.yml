@@ -1,0 +1,6 @@
+name: car
+properties:
+  - name: title
+  - name: price
+    type: integer
+  - name: year
