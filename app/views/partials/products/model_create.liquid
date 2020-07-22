@@ -16,4 +16,11 @@
     }
   }
 {% endgraphql %}
-{% assign changeset = changeset | add_hash_key: 'model', g.model_create %}
+{% liquid
+  if g.errors.size > 0
+    assign errors = '{"main": "invalid object"}' | parse_json
+    assign changeset = changeset | add_hash_key: 'errors', errors
+  else
+    assign changeset = changeset | add_hash_key: 'model', g.model_create
+  endif
+%}

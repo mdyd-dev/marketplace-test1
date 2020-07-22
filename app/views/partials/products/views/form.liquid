@@ -21,5 +21,9 @@
       <span>{{ errors['price'] }}</span>
     {% endif %}
   </p>
+  {% if errors['main'] %}
+    <p>{{ errors['main'] }}</p>
+  {% endif %}
   <input type="submit" value="Create">
 </form>
+
