@@ -1,3 +1,6 @@
+{% assign errors = changeset.errors %}
+{% assign payload = changeset.payload %}
+
 <h1>Add Product</h1>
 
 <form url="/products" method="POST">
@@ -6,7 +9,7 @@
     <label for="product_title">
       Title
     </label>
-    <input type="text" name="product[title]" id="product_title" value={{ context.params.product.title }} />
+    <input type="text" name="product[title]" id="product_title" value={{ payload.title }} />
     {% if errors['title'] %}
       <span>{{ errors['title'] }}</span>
     {% endif %}
@@ -16,7 +19,7 @@
     <label for="product_price">
       Price
     </label>
-    <input type="text" name="product[price]" id="product_price" value={{ context.params.product.price }} />
+    <input type="text" name="product[price]" id="product_price" value={{ payload.price }} />
     {% if errors['price'] %}
       <span>{{ errors['price'] }}</span>
     {% endif %}

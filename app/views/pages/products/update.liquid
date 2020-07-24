@@ -1,14 +1,14 @@
 ---
 slug: products
-method: post
+method: put
 ---
 {% liquid
   assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
-  include 'products/create', changeset: changeset
+  include 'logic/products/update', changeset: changeset
 
   if changeset.errors.size == 0
     echo 'TODO: redirect_to /products/' | append: changeset.model.id
   else
-    include 'theme/products/form', changeset: changeset
+    include 'theme/products/edit', changeset: changeset
   endif
 %}

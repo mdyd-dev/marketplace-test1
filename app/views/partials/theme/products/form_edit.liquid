@@ -1,0 +1,34 @@
+{% assign errors = changeset.errors %}
+{% assign payload = changeset.payload %}
+{% assign model = changeset.model %}
+
+<h1>Edit Product</h1>
+
+<form url="/products/{{model.id}}" method="POST">
+  <input type="hidden" name="_method" value="put" />
+  <input type="hidden" name="product[id]" value="{{model.id}}">
+  <p>
+    <label for="product_title">
+      Title
+    </label>
+    <input type="text" name="product[title]" id="product_title" value={{ payload.title | default: model.title }} />
+    {% if errors['title'] %}
+      <span>{{ errors['title'] }}</span>
+    {% endif %}
+  </p>
+
+  <p>
+    <label for="product_price">
+      Price
+    </label>
+    <input type="text" name="product[price]" id="product_price" value={{ payload.price | default: model.price}} />
+    {% if errors['price'] %}
+      <span>{{ errors['price'] }}</span>
+    {% endif %}
+  </p>
+  {% if errors['main'] %}
+    <p>{{ errors['main'] }}</p>
+  {% endif %}
+  <input type="submit" value="Update">
+</form>
+

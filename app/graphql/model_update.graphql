@@ -1,0 +1,8 @@
+mutation model_update($id: ID!, $model: CustomizationInputType!){
+  model_update(
+    id: $id
+    model: $model
+  ){
+    id
+  }
+}

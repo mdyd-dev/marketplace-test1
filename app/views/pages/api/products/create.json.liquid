@@ -1,0 +1,11 @@
+---
+slug: api/products
+layout: ''
+response_headers: "{% include 'api/shared/headers' %}"
+method: post
+---
+{% liquid
+  assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
+  include 'logic/products/create', changeset: changeset, params: context.params
+  include 'api/shared/show_changeset', changeset: changeset
+%}

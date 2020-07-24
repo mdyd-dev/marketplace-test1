@@ -1,0 +1,10 @@
+{% liquid
+  if changeset.errors.size == 0
+    echo changeset.model
+  else
+    response_status 422
+    echo '{ "errors": '
+    echo changeset.errors
+    echo '}'
+  endif
+%}

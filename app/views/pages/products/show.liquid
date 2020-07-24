@@ -1,0 +1,7 @@
+---
+slug: products/show
+---
+{% graphql products = 'product', id: context.params.slug3 %}
+{% assign product = products | dig: 'models', 'results' | first %}
+<h1>product</h1>
+{{ product  }}

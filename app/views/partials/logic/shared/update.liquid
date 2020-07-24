@@ -1,0 +1,27 @@
+{% liquid
+  assign id = changeset.payload | remove_hash_key: 'id'
+  assign properties = '' | split: ''
+  for field in changeset.payload
+    assign property = '{}' | parse_json
+    assign property = property | add_hash_key: 'name', field[0]
+    assign value = '' | append: field[1]
+    assign property = property | add_hash_key: 'value', value
+    assign properties =  properties | add_to_array: property
+  endfor
+%}
+{% parse_json model %}
+  { "model_schema_name": "{{ model_schema_name }}", "properties": {{ properties }} }
+{% endparse_json %}
+{% liquid
+  if changeset.errors.size == 0
+    graphql g = 'model_update', id: id, model: model
+
+    if g.errors.size > 0
+      log g, type: 'error'
+      assign errors = '{"main": "invalid object"}' | parse_json
+      assign changeset = changeset | add_hash_key: 'errors', errors
+    else
+      assign changeset = changeset | add_hash_key: 'model', g.model_update
+    endif
+  endif
+%}

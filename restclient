@@ -1,7 +1,7 @@
 # -*- restclient -*-
 #
 
-:endpoint = https://piotrze-test.staging.oregon.platform-os.com/api/products
+:endpoint = https://piotrze-test.staging.oregon.platform-os.com
 
 # create product
 POST :endpoint/api/products.json
@@ -9,6 +9,31 @@ Content-Type: application/json
 {
   "product": {
     "title":"mazda",
+    "price": 1
+  }
+}
+
+# update product
+PUT :endpoint/api/products.json
+Content-Type: application/json
+{
+  "product": {
+    "id": "47",
+    "title":"mazda",
+    "price": 10
+  }
+}
+
+# show product
+GET :endpoint/api/products/47.json
+Content-Type: application/json
+{
+  "product": {
+    "title":"mazda",
     "price": 0
   }
 }
+
+# list products
+GET :endpoint/api/products.json
+Content-Type: application/json

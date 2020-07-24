@@ -1,4 +1,7 @@
 {% liquid
+  assign errors = changeset.errors
+  assign payload = changeset.payload
+
   if payload.title == null or payload.title == empty
     assign errors = errors | add_hash_key: 'title', 'must be not empty'
   endif
@@ -8,9 +11,8 @@
   endif
 
   assign price = 0 | plus: payload.price
-  assign payload = payload | add_hash_key: 'price', price
 
-  if payload.price <= 0
+  if price <= 0
     assign errors = errors | add_hash_key: 'price', 'must be higher than 0'
   endif
 %}

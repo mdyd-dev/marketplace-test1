@@ -1,0 +1,12 @@
+query product($id:ID!){
+  models(
+    per_page: 1
+    filter: { id: { value: $id } }
+  ){
+    results{
+      id
+      title: property(name: "title")
+      price: property_int(name: "price")
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation model_create($model: CustomizationInputType){
+  model_create(
+    model: $model
+  ){
+    id
+  }
+}

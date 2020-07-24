@@ -1,7 +1,0 @@
-{% liquid
-  assign changeset = changeset | add_hash_key: 'payload', context.params.product
-  include 'products/validate', errors: changeset.errors, payload: changeset.payload
-  if changeset.errors.size == 0
-    include 'products/model_create', changeset: changeset
-  endif
-%}

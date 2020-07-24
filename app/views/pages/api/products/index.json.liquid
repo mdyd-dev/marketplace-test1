@@ -1,0 +1,22 @@
+---
+slug: api/products
+method: get
+layout: ''
+response_headers: "{% include 'api/shared/headers' %}"
+---
+{% liquid
+  assign id = context.params.slug3
+  if id
+    graphql products = 'product', id: id
+    assign product = products | dig: 'models', 'results' | first
+    if product
+      echo product
+    else
+      response_status 404
+    endif
+  else
+    graphql products = 'products', id: id
+    assign products = products | dig: 'models'
+    echo products
+  endif
+%}

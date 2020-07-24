@@ -1,0 +1,12 @@
+query products{
+  models(
+    per_page: 100
+  ){
+    total_entries
+    results{
+      id
+      title: property(name: "title")
+      price: property_int(name: "price")
+    }
+  }
+}

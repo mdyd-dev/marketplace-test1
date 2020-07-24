@@ -1,0 +1,13 @@
+mutation product_create($title: String, $price: Int){
+  model_create(
+    model: {
+      model_schema_name: "car"
+      properties: [
+        { name: "title", value: $title },
+        { name: "price", value_int: $price }
+      ]
+    }
+  ){
+    id
+  }
+}
