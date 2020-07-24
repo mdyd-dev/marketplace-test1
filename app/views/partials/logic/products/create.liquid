@@ -1,5 +1,5 @@
 {% liquid
   assign changeset = changeset | add_hash_key: 'payload', params.product
-  include 'logic/products/validate', changeset: changeset
-  include 'logic/shared/insert', changeset: changeset, model_schema_name: "car"
+  render 'logic/products/validate', changeset: changeset
+  render 'logic/shared/insert', changeset: changeset, model_schema_name: "car"
 %}

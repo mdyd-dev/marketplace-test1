@@ -4,11 +4,11 @@ method: put
 ---
 {% liquid
   assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
-  include 'logic/products/update', changeset: changeset
+  render 'logic/products/update', changeset: changeset, params: context.params
 
   if changeset.errors.size == 0
     echo 'TODO: redirect_to /products/' | append: changeset.model.id
   else
-    include 'theme/products/edit', changeset: changeset
+    render 'theme/products/edit', changeset: changeset
   endif
 %}

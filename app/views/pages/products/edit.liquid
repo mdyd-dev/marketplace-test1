@@ -7,4 +7,4 @@ slug: products/edit
   assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
   assign changeset = changeset | add_hash_key: 'model', product
 %}
-{% include 'theme/products/edit', changeset: changeset %}
+{% render 'theme/products/edit', changeset: changeset %}

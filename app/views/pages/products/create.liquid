@@ -4,11 +4,11 @@ method: post
 ---
 {% liquid
   assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
-  include 'products/create', changeset: changeset
+  render 'products/create', changeset: changeset, params: context.params
 
   if changeset.errors.size == 0
     echo 'TODO: redirect_to /products/' | append: changeset.model.id
   else
-    include 'theme/products/form', changeset: changeset
+    render 'theme/products/form', changeset: changeset
   endif
 %}
