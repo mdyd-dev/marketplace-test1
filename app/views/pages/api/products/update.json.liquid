@@ -2,10 +2,10 @@
 slug: api/products
 method: put
 layout: ''
-response_headers: "{% render 'api/shared/headers' %}"
+response_headers: "{% include 'api/shared/headers' %}"
 ---
 {% liquid
   assign changeset = '{ "errors": {}, "payload": {}, "model": null }' | parse_json
-  render 'logic/products/update', changeset: changeset
-  render 'api/shared/show_changeset', changeset: changeset
+  include 'logic/products/update', changeset: changeset
+  include 'api/shared/show_changeset', changeset: changeset
 %}

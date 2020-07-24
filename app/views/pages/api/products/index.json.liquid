@@ -2,7 +2,7 @@
 slug: api/products
 method: get
 layout: ''
-response_headers: "{% render 'api/shared/headers' %}"
+response_headers: "{% include 'api/shared/headers' %}"
 ---
 {% liquid
   assign id = context.params.slug3
